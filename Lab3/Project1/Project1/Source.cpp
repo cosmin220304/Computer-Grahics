@@ -598,25 +598,78 @@ void Display5() {
 class Tree
 {
 public:
-	void tree(double lungime, int nivel, CPunct p, int rotatie)
+	void tree(double lungime, int nivel, CPunct p0, int rotatie)
 	{
-		double x, y;
-		p.getxy(x, y);
-		if (nivel == 0)
+		double x, y; 
+		if (nivel < 0)
 		{
-			drawTree(p, lungime, rotatie);
 		}
 		else
 		{
-			drawTree(p, lungime, rotatie);  
-			drawTree(CPunct(x - 2.125 * lungime / 3, y - lungime * 1.045), lungime/2, rotatie - 30);
+			double x, y;
+			p0.getxy(x, y);
+			CPunct points[4];
+
+			CVector v(0.0, -1.0);
+			CPunct p(x, y);
+			v.rotatie(rotatie);
+			v.deseneaza(p, lungime / 3);
+
+			v.getDest(p, lungime / 3).getxy(x, y);
+			CVector v1(0.0, -1);
+			CPunct p1(x, y);
+			v1.rotatie(rotatie - 45);
+			v1.deseneaza(p1, lungime);
+
+			v1.getDest(p1, lungime).getxy(x, y);
+			tree(lungime / 3, nivel - 1, CPunct(x, y), rotatie - 30);
+
+			v.getDest(p, lungime / 3).getxy(x, y);
+			CVector v2(0.0, -1);
+			CPunct p2(x, y);
+			v2.rotatie(rotatie + 45);
+			v2.deseneaza(p1, lungime);
+
+			v2.getDest(p2, lungime).getxy(x, y);
+			CVector v3(0.0, -1);
+			CPunct p3(x, y);
+			v3.rotatie(rotatie);
+			v3.deseneaza(p3, lungime);
+
+			v2.getDest(p2, lungime).getxy(x, y);
+			CVector v4(0.0, -1);
+			v4.rotatie(rotatie + 60);
+			CPunct p4(x, y);
+			v4.deseneaza(p4, lungime);
+
+			v4.getDest(p4, lungime).getxy(x, y);
+			tree(lungime / 3, nivel - 1, CPunct(x, y), rotatie + 60);
+
+			v3.getDest(p3, lungime).getxy(x, y);
+			CVector v5(-1, 0);
+			CPunct p5(x, y);
+			v5.rotatie(rotatie);
+			v5.deseneaza(p5, lungime / 2);
+
+			v5.getDest(p5, lungime / 2).getxy(x, y);
+			tree(lungime / 3, nivel - 1, CPunct(x, y), -90);
+
+			v3.getDest(p3, lungime).getxy(x, y);
+			CVector v6(-1, 0);
+			CPunct p6(x, y);
+			v6.rotatie(rotatie + 120);
+			v6.deseneaza(p6, lungime / 2);
+
+			v6.getDest(p6, lungime / 2).getxy(x, y);
+			tree(lungime / 3, nivel - 1, CPunct(x, y), rotatie + 30);
 		}
 	}
 
-	void drawTree(CPunct p0, double lungime, int rotatie)
+	CPunct* drawTree(CPunct p0, double lungime, int rotatie)
 	{
 		double x, y;
 		p0.getxy(x, y);
+		CPunct points[4];
 
 		CVector v(0.0, -1.0);
 		CPunct p(x, y);
@@ -629,41 +682,50 @@ public:
 		v1.rotatie(rotatie - 45);
 		v1.deseneaza(p1, lungime);
 
+		points[0] = v1.getDest(p1, lungime); 
+
 		v.getDest(p, lungime / 3).getxy(x, y);
 		CVector v2(0.0, -1);
 		CPunct p2(x, y);
 		v2.rotatie(rotatie + 45);
 		v2.deseneaza(p1, lungime);
 
-		v2.getDest(p1, lungime).getxy(x, y);
+		v2.getDest(p2, lungime).getxy(x, y);
 		CVector v3(0.0, -1);
 		CPunct p3(x, y); 
 		v3.rotatie(rotatie);
 		v3.deseneaza(p3, lungime);
-
-		/*
-		v3.getDest(p, lungime).getxy(x, y);
+		
+		v2.getDest(p2, lungime).getxy(x, y);
 		CVector v4(0.0, -1);
 		v4.rotatie(rotatie + 60);
 		CPunct p4(x, y);
-		v4.deseneaza(p4, lungime/2);
+		v4.deseneaza(p4, lungime);
 
-		v4.getDest(p, lungime / 2).getxy(x, y);
+		points[1] = v4.getDest(p4, lungime);
+		
+		v3.getDest(p3, lungime).getxy(x, y);
 		CVector v5(-1, 0); 
 		CPunct p5(x, y);
 		v5.rotatie(rotatie);
 		v5.deseneaza(p5, lungime / 2);
 
-		v4.getDest(p, lungime / 2).getxy(x, y);
+		points[3] = v5.getDest(p5, lungime / 2);
+		
+		v3.getDest(p3, lungime).getxy(x, y);
 		CVector v6(-1, 0);
-		CPunct p6(x + 2.125 * lungime / 3, y - lungime * 2.045);
+		CPunct p6(x, y);
 		v6.rotatie(rotatie + 120);
-		v6.deseneaza(p6, lungime / 2);*/
+		v6.deseneaza(p6, lungime / 2);
+
+		points[41] = v6.getDest(p6, lungime / 6);
+
+		return points;
 	}
 
 	void afisare(double lungime, int nivel)
 	{
-		tree(lungime, nivel, CPunct(0, 1), 0); 
+		tree(lungime, nivel, CPunct(-0.25, 1), 0); 
 	}
 };
 
@@ -735,6 +797,10 @@ void Display(void)
 	case '6':
 		glClear(GL_COLOR_BUFFER_BIT);
 		Display6();
+		break;
+	case '7':
+		glClear(GL_COLOR_BUFFER_BIT);
+		Display7();
 		break;
 	default:
 		break;
