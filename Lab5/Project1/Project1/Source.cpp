@@ -797,11 +797,7 @@ void Display(void)
 	case '6':
 		glClear(GL_COLOR_BUFFER_BIT);
 		Display6();
-		break;
-	case '7':
-		glClear(GL_COLOR_BUFFER_BIT);
-		Display7();
-		break;
+		break; 
 	default:
 		break;
 	}

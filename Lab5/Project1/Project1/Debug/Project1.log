@@ -1,0 +1,4 @@
+﻿  Source.cpp
+C:\Github\Computer-Grahics\Lab3\Project1\Project1\Source.cpp(603,13): warning C4101: 'y': unreferenced local variable
+C:\Github\Computer-Grahics\Lab3\Project1\Project1\Source.cpp(603,10): warning C4101: 'x': unreferenced local variable
+  Project1.vcxproj -> C:\Github\Computer-Grahics\Lab3\Project1\Debug\Project1.exe

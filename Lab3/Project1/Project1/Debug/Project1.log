@@ -1,0 +1,8 @@
+﻿  Source.cpp
+C:\Github\Computer-Grahics\Lab3\Project1\Project1\Source.cpp(44,24): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Github\Computer-Grahics\Lab3\Project1\Project1\Source.cpp(44,14): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Github\Computer-Grahics\Lab3\Project1\Project1\Source.cpp(48,18): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Github\Computer-Grahics\Lab3\Project1\Project1\Source.cpp(48,15): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Github\Computer-Grahics\Lab3\Project1\Project1\Source.cpp(57,1): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Github\Computer-Grahics\Lab3\Project1\Project1\Source.cpp(96,1): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  Project1.vcxproj -> C:\Github\Computer-Grahics\Lab3\Project1\Debug\Project1.exe
